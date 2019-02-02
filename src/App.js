@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { Container, Row, Col } from 'reactstrap';
 import TaskForm from './AddTaskForm/AddTaskForm';
+import Task from './Task/Task';
 
 
 class App extends Component {
@@ -9,7 +10,8 @@ class App extends Component {
     return (
       <div className="App">
         <Container>
-          <TaskForm/>
+            <TaskForm/>
+            <Task/>
         </Container>
       </div>
     );
