@@ -12,7 +12,7 @@ export default class TaskForm extends React.Component {
                         <Input type="text" value={this.props.task.text} onChange={this.props.onChangeTask} placeholder="Add a new task" bsSize="lg"/>
                     </Col>
                     <Col xs={3}>
-                        <Button outline color="success" size="lg" block>Add Task</Button>
+                        <Button onClick={this.props.addTask} outline color="success" size="lg" block>Add Task</Button>
                     </Col>
                 </Row>
             </Form>

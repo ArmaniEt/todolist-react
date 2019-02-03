@@ -10,7 +10,7 @@ class App extends Component {
         return (
             <div className="App">
                 <Container>
-                    <TaskForm task={this.state.currentTask} onChangeTask = {this.changedTask}/>
+                    <TaskForm addTask={this.addOnClick} task={this.state.currentTask} onChangeTask = {this.changedTask}/>
                     {this.state.tasks.map((element) => {
                             return <Task
                                 key={element.id}
@@ -30,15 +30,12 @@ class App extends Component {
 
 
     changedTask = (event) => {
-        let date = new Date();
-        let id = date.getTime();
         let text = event.target.value;
 
 
         let currentTask = {
             ...this.state.currentTask,
             text: text,
-            id: id
         };
 
         this.setState({
@@ -48,9 +45,16 @@ class App extends Component {
 
     };
 
-    addOnClick = () => {
+    addOnClick = (event) => {
+        event.preventDefault();
 
+        let date = new Date();
+        let id = date.getTime();
+        let task = {...this.state.currentTask};
+        task.id = id;
 
+        let tasks = [...this.state.tasks, task]; // added task to tasks array
+        this.setState({...this.state, tasks}) // added new tasks array to state
 
 
     }
@@ -63,7 +67,7 @@ class App extends Component {
 
 // how to add text from input on a button click:
 // pass a current task function as an argument to addOnclick function to add it
-//
+
 
 
 
