@@ -19,7 +19,7 @@ class App extends Component {
                             return <Task
                                 key={element.id}
                                 text = {element.text}
-                                onDeleteTask = {this.deleteOnClick}
+                                onDeleteTask = {() => this.deleteOnClick(element.id)}
                             >
                             </Task>
                         })
