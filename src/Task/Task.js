@@ -6,7 +6,7 @@ const Task = (props) => {
         <Row className="mt-3">
             <Col sm="12">
                 <Card body>
-                    <CardText>Some task</CardText>
+                    <CardText>{props.text}</CardText>
                     <Button size="sm">Delete task</Button>
                 </Card>
             </Col>

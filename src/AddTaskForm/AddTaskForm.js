@@ -9,7 +9,7 @@ export default class TaskForm extends React.Component {
             <Form className='mt-4'>
                 <Row xs={12}>
                     <Col xs={9}>
-                        <Input placeholder="Add a new task" bsSize="lg"/>
+                        <Input type="text" value={this.props.task.text} onChange={this.props.onChangeTask} placeholder="Add a new task" bsSize="lg"/>
                     </Col>
                     <Col xs={3}>
                         <Button outline color="success" size="lg" block>Add Task</Button>
