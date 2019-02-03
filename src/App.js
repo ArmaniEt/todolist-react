@@ -14,7 +14,9 @@ class App extends Component {
                     {this.state.tasks.map((element) => {
                             return <Task
                                 key={element.id}
-                                text = {element.text}>
+                                text = {element.text}
+                                onDeleteTask = {this.deleteOnClick}
+                            >
                             </Task>
                         })
                     }
@@ -57,6 +59,17 @@ class App extends Component {
         this.setState({...this.state, tasks}) // added new tasks array to state
 
 
+    };
+
+    deleteOnClick = (id) => {
+        let taskId = this.state.tasks.findIndex(task => {return task.id === id});
+        const tasks = [...this.state.tasks];
+        tasks.splice(taskId, 1);
+
+        this.setState({
+            ...this.state,
+            tasks
+        });
     }
 
 
