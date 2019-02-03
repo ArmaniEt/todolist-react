@@ -10,7 +10,11 @@ class App extends Component {
         return (
             <div className="App">
                 <Container>
-                    <TaskForm addTask={this.addOnClick} task={this.state.currentTask} onChangeTask = {this.changedTask}/>
+                    <TaskForm addTask={this.addOnClick}
+                              task={this.state.currentTask}
+                              onChangeTask = {this.changedTask}
+                              addOnClickDisabled = {this.isAddOnClickDisabled()}
+                    />
                     {this.state.tasks.map((element) => {
                             return <Task
                                 key={element.id}
@@ -56,9 +60,20 @@ class App extends Component {
         task.id = id;
 
         let tasks = [...this.state.tasks, task]; // added task to tasks array
-        this.setState({...this.state, tasks}) // added new tasks array to state
+        this.setState({
+            ...this.state,
+            tasks,
+            currentTask: {
+                text: '',
+                id: null
+            }
+        }); // added new tasks array to state
 
 
+    };
+
+    isAddOnClickDisabled = () => {
+        return this.state.currentTask.text === '';
     };
 
     deleteOnClick = (id) => {
@@ -72,14 +87,8 @@ class App extends Component {
         });
     }
 
-
-
-
-
 }
 
-// how to add text from input on a button click:
-// pass a current task function as an argument to addOnclick function to add it
 
 
 
