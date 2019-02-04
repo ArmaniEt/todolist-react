@@ -17,9 +17,12 @@ class App extends Component {
                     />
                     {this.state.tasks.map((element) => {
                             return <Task
+                                id={element.id}
                                 key={element.id}
                                 text = {element.text}
                                 onDeleteTask = {() => this.deleteOnClick(element.id)}
+                                isTaskDone = {() => this.isDone(element.id)}
+                                status = {element.status} // pass bool value of current status
                             >
                             </Task>
                         })
@@ -30,8 +33,11 @@ class App extends Component {
     }
 
     state = {
-        tasks: [{text: 'Some random task number one', id: 1}, {text: 'Some random task number two', id: 2}],
-        currentTask: {text: '', id: null}
+        tasks: [
+            {text: 'Some random task number one', id: 1, status: false},
+            {text: 'Some random task number two', id: 2, status:false}
+            ],
+        currentTask: {text: '', id: null, status: false}
     };
 
 
@@ -65,7 +71,8 @@ class App extends Component {
             tasks,
             currentTask: {
                 text: '',
-                id: null
+                id: null,
+                status: false
             }
         }); // added new tasks array to state
 
@@ -85,12 +92,29 @@ class App extends Component {
             ...this.state,
             tasks
         });
+    };
+
+    isDone = (id) => {
+        let taskId = this.state.tasks.findIndex(task => {return task.id === id});
+
+        const tasks = [...this.state.tasks];
+        tasks[taskId].status = !this.state.tasks[taskId].status;
+
+        this.setState({tasks});
+
+        //find a task to switch a task by id
+        //unpacked that task, change status of that task
+        //set state with changed task
+
     }
 
 }
 
 
-
+// need to do status
+// each task should have status with default value: false
+// we could write a method that switch our status to true
+// we should see how to do if statements in our tasks
 
 
 export default App;
